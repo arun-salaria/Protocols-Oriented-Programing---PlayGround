@@ -1,6 +1,6 @@
 //Just a simple and basic example for POP
 
-protocol Person {
+protocol Person {    // Base Protocol for Both Types Student and Teacher
     var name:String {get}
     var isMinor:Bool {get}
 }
@@ -14,11 +14,11 @@ protocol Teacher:Person {
     var subjectName:String{get}
 }
 
-extension Person {
+extension Person {   // Shows the use of extension: If its type Student the isMinor is ture
     var isMinor :Bool {self is Student}
 }
 
-extension Student {
+extension Student {  // Shows the use of extension: If its type NonMedSutdent the completed10th is ture
     var completed10th:Bool {self is NonMedSutdent}
 }
 
@@ -33,12 +33,12 @@ struct NonMedSutdent :Student,Person {
     var name: String
 }
 
-enum BestTeacher:Teacher {
+enum BestTeacher:Teacher { // Shows the use of extension as Teacher
     
     case arun
     case shubham
     
-    var name:String {
+    var name:String {   // Assigning value to Name and Subject depending upon the case
         switch self {
         case .arun:
             return "Arun"
@@ -57,11 +57,11 @@ enum BestTeacher:Teacher {
     
 }
 
-BestTeacher.shubham.name
-BestTeacher.arun.isMinor
+BestTeacher.shubham.name        // by enum and protocol
+BestTeacher.arun.isMinor        // by enum and protocol extension
 let shivani = NonMedSutdent(numberOfSubjects: 5, name: "Shivani")
 shivani.numberOfSubjects
-shivani.isMinor
+shivani.isMinor                 // by protocol extension
 let rama = Tuitor(name: "Rama", subjectName: "Hindi")
 rama.isMinor
 
